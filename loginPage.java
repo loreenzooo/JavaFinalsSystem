@@ -21,6 +21,7 @@ public class loginPage {
             Font smallerReg = poppinsRegular.deriveFont(20f);
             Font smallerBold = poppinsBold.deriveFont(24f);
             Font smallerBold1 = poppinsBold.deriveFont(32f);
+
         } catch (Exception e) {
             e.printStackTrace();
             poppinsRegular = new Font("SansSerif", Font.PLAIN, 18);
@@ -112,7 +113,6 @@ public class loginPage {
         loginBtn.setBounds(67, 343, 203, 48);
         loginBtn.setFocusPainted(false);
         rightPanel.add(loginBtn);
-
 
         frame.add(leftPanel, BorderLayout.WEST);
         frame.add(rightPanel, BorderLayout.CENTER);
