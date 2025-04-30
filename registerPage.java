@@ -148,8 +148,8 @@ public class registerPage {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            registerPage lp = new registerPage();
-            lp.register();
+            registerPage rp = new registerPage();
+            rp.register();
         });
 
     }
