@@ -43,7 +43,7 @@ public class loginPage {
 
         /*
          * JLabel logo = new JLabel(new ImageIcon("img/logo/barkAndMeowLogo.png"));
-         * logo.setBounds(50, 30, 500, 400);
+         * logo.setBounds(50, 30, 100, 100);
          * leftPanel.add(logo);
          */
 
@@ -67,6 +67,14 @@ public class loginPage {
         registerButton.setFocusPainted(false);
         registerButton.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         leftPanel.add(registerButton);
+
+        /*
+         * registerButton.addActionListener(ActionEvent e(){
+         * public void actionPereformed(){
+         * 
+         * }
+         * });
+         */
 
         JPanel rightPanel = new JPanel();
         rightPanel.setBackground(Color.decode("#FDEBD0"));
