@@ -1,8 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.io.File;
 
-public class registerPage {
+public class registerPage extends JFrame{
 
     Font poppinsRegular;
     Font poppinsBold;
@@ -60,6 +61,14 @@ public class registerPage {
         loginButton.setFocusPainted(false);
         loginButton.setBounds(31, 420, 200, 43);
         leftPanel.add(loginButton);
+
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loginPage logPage = new loginPage();
+                logPage.login();
+            }
+        });
 
         frame.add(leftPanel);
 
