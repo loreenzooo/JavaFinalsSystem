@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 
 public class loginPage {
@@ -8,6 +10,9 @@ public class loginPage {
     Font poppinsRegular;
     Font poppinsBold;
     Font poppinsMedium;
+
+    private final String adminUsername = "admin";
+    private final String adminPw = "adminpass";
 
     public loginPage() {
         try {
@@ -68,13 +73,15 @@ public class loginPage {
         registerButton.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         leftPanel.add(registerButton);
 
-        /*
-         * registerButton.addActionListener(ActionEvent e(){
-         * public void actionPereformed(){
-         * 
-         * }
-         * });
-         */
+        registerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                registerPage registrationPage = new registerPage();
+                registrationPage.register();
+            }
+        });
+        
+    
 
         JPanel rightPanel = new JPanel();
         rightPanel.setBackground(Color.decode("#FDEBD0"));
