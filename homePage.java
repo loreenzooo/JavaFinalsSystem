@@ -93,11 +93,12 @@ public class homePage {
         panel.add(dogndcatImageLabel);
 
         // lagout button
-        JButton lagoutButton = new JButton("Logout");
-        lagoutButton.setBounds(835, 445, 80, 25);
-        lagoutButton.setBackground(Color.red);
-        lagoutButton.setForeground(Color.decode("#7E0A0A"));
-        panel.add(lagoutButton);
+        JButton logoutButton = new JButton("Logout");
+        logoutButton.setBounds(835, 445, 80, 25);
+        logoutButton.setBackground(Color.red);
+        logoutButton.setFocusPainted(false);
+        logoutButton.setForeground(Color.decode("#7E0A0A"));
+        panel.add(logoutButton);
 
         frame.add(panel);
         frame.setVisible(true);
