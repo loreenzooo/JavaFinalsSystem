@@ -3,7 +3,10 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 
-public class registerPage extends JFrame{
+public class registerPage extends JFrame {
+
+    final String[][] userData = new String[100][100];
+    static int userIndex = 0;
 
     Font poppinsRegular;
     Font poppinsBold;
@@ -67,6 +70,7 @@ public class registerPage extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 loginPage logPage = new loginPage();
                 logPage.login();
+                frame.setVisible(false);
             }
         });
 
@@ -83,10 +87,10 @@ public class registerPage extends JFrame{
         registrationLabel.setForeground(Color.decode("#8D6E63"));
         rightPanel.add(registrationLabel);
 
-        JLabel email = new JLabel("Email");
-        email.setFont(poppinsRegular.deriveFont(20f));
-        email.setForeground(Color.decode("#8D6E63"));
-        email.setBounds(617, 75, 55, 30);
+        JLabel emailLabel = new JLabel(" Email");
+        emailLabel.setFont(poppinsRegular.deriveFont(20f));
+        emailLabel.setForeground(Color.decode("#8D6E63"));
+        emailLabel.setBounds(617, 75, 100, 30);
 
         JTextField emailInput = new JTextField();
         emailInput.setFont(poppinsRegular.deriveFont(20f));
@@ -94,36 +98,96 @@ public class registerPage extends JFrame{
         emailInput.setBackground(Color.decode("#EDDCC4"));
         emailInput.setBounds(617, 105, 270, 40);
 
+        emailInput.setText(" Email");
+        emailInput.setForeground(Color.decode("#999999"));
+        emailInput.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                if (emailInput.getText().equals(" Email")) {
+                    emailInput.setText("");
+                    emailInput.setForeground(Color.decode("#333333"));
+                }
+            }
+
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                if (emailInput.getText().isEmpty()) {
+                    emailInput.setText(" Email");
+                    emailInput.setForeground(Color.decode("#999999"));
+                }
+            }
+        });
+
         rightPanel.add(emailInput);
-        rightPanel.add(email);
+        rightPanel.add(emailLabel);
 
-        JLabel username = new JLabel("Username");
-        username.setFont(poppinsRegular.deriveFont(20f));
-        username.setForeground(Color.decode("#8D6E63"));
-        username.setBounds(617, 155, 105, 30);
+        JLabel usernameLabel = new JLabel(" Username");
+        usernameLabel.setFont(poppinsRegular.deriveFont(20f));
+        usernameLabel.setForeground(Color.decode("#8D6E63"));
+        usernameLabel.setBounds(617, 155, 200, 30);
 
-        JTextField userInput = new JTextField();
-        userInput.setFont(poppinsRegular.deriveFont(20f));
-        userInput.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        userInput.setBackground(Color.decode("#EDDCC4"));
-        userInput.setBounds(617, 185, 270, 40);
+        JTextField usernameInput = new JTextField();
+        usernameInput.setFont(poppinsRegular.deriveFont(20f));
+        usernameInput.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        usernameInput.setBackground(Color.decode("#EDDCC4"));
+        usernameInput.setBounds(617, 185, 270, 40);
 
-        rightPanel.add(userInput);
-        rightPanel.add(username);
+        usernameInput.setText(" Username");
+        usernameInput.setForeground(Color.decode("#999999"));
+        usernameInput.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                if (usernameInput.getText().equals(" Username")) {
+                    usernameInput.setText("");
+                    usernameInput.setForeground(Color.decode("#333333"));
+                }
+            }
 
-        JLabel password = new JLabel("Password");
-        password.setFont(poppinsRegular.deriveFont(20f));
-        password.setForeground(Color.decode("#8D6E63"));
-        password.setBounds(617, 235, 200, 30);
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                if (usernameInput.getText().isEmpty()) {
+                    usernameInput.setText(" Username");
+                    usernameInput.setForeground(Color.decode("#999999"));
+                }
+            }
+        });
+
+        rightPanel.add(usernameInput);
+        rightPanel.add(usernameLabel);
+
+        JLabel passwordLabel = new JLabel("Password");
+        passwordLabel.setFont(poppinsRegular.deriveFont(20f));
+        passwordLabel.setForeground(Color.decode("#8D6E63"));
+        passwordLabel.setBounds(617, 235, 200, 30);
 
         JPasswordField passwordInput = new JPasswordField();
         passwordInput.setFont(poppinsRegular.deriveFont(20f));
         passwordInput.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         passwordInput.setBackground(Color.decode("#EDDCC4"));
         passwordInput.setBounds(617, 265, 270, 40);
+        passwordInput.setEchoChar((char) 0);
+
+        passwordInput.setText(" Password");
+        passwordInput.setForeground(Color.decode("#999999"));
+        passwordInput.setEchoChar((char) 0);
+        passwordInput.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                String pass = new String(passwordInput.getPassword());
+                if (pass.equals(" Password")) {
+                    passwordInput.setText("");
+                    passwordInput.setForeground(Color.decode("#333333"));
+                    passwordInput.setEchoChar('\u2022');
+                }
+            }
+
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                String pass = new String(passwordInput.getPassword());
+                if (pass.isEmpty()) {
+                    passwordInput.setText(" Password");
+                    passwordInput.setForeground(Color.decode("#999999"));
+                    passwordInput.setEchoChar((char) 0);
+                }
+            }
+        });
 
         rightPanel.add(passwordInput);
-        rightPanel.add(password);
+        rightPanel.add(passwordLabel);
 
         JLabel confirmPassword = new JLabel("Confirm Password");
         confirmPassword.setFont(poppinsRegular.deriveFont(20f));
@@ -136,19 +200,89 @@ public class registerPage extends JFrame{
         confirmPasswordInput.setBackground(Color.decode("#EDDCC4"));
         confirmPasswordInput.setBounds(617, 345, 270, 40);
 
+        confirmPasswordInput.setText(" Confirm Password");
+        confirmPasswordInput.setForeground(Color.decode("#999999"));
+        confirmPasswordInput.setEchoChar((char) 0);
+        confirmPasswordInput.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                String pass = new String(confirmPasswordInput.getPassword());
+                if (pass.equals(" Confirm Password")) {
+                    confirmPasswordInput.setText("");
+                    confirmPasswordInput.setForeground(Color.decode("#333333"));
+                    confirmPasswordInput.setEchoChar('\u2022');
+                }
+            }
+
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                String pass = new String(confirmPasswordInput.getPassword());
+                if (pass.isEmpty()) {
+                    confirmPasswordInput.setText(" Confirm Password");
+                    confirmPasswordInput.setForeground(Color.decode("#999999"));
+                    confirmPasswordInput.setEchoChar((char) 0);
+                }
+            }
+        });
+
+        JButton registerButton = new JButton("Register");
+        registerButton.setFont(poppinsBold.deriveFont(24f));
+        registerButton.setBackground(Color.decode("#3CB371"));
+        registerButton.setForeground(Color.decode("#FDEBD0"));
+        registerButton.setFocusPainted(false);
+        registerButton.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        registerButton.setBounds(657, 420, 200, 43);
+
+        registerButton.addActionListener(e -> {
+            String pass = new String(passwordInput.getPassword());
+            String confirmPass = new String(confirmPasswordInput.getPassword());
+
+            String email = emailInput.getText().trim();
+            String username = usernameInput.getText().trim();
+            String password = new String(passwordInput.getPassword()).trim();
+            String confirmPw = new String(confirmPasswordInput.getPassword()).trim();
+
+            if (!password.equals(confirmPw) || !email.endsWith("@gmail.com")) {
+                JOptionPane.showMessageDialog(
+                        frame,
+                        "Passwords must match AND email must end with @gmail.com",
+                        "Validation Error",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
+                // Saving user data
+                if (userIndex < userData.length) {
+                    userData[userIndex][0] = email;
+                    userData[userIndex][1] = username;
+                    userData[userIndex][2] = password;
+                    // user index ++
+                    userIndex++;
+                    JOptionPane.showMessageDialog(frame, "Registration successful!");
+
+                    // clear form fields
+                    emailInput.setText(" Email");
+                    emailInput.setForeground(Color.decode("#999999"));
+
+                    usernameInput.setText(" Username");
+                    usernameInput.setForeground(Color.decode("#999999"));
+
+                    passwordInput.setText(" Password");
+                    passwordInput.setForeground(Color.decode("#999999"));
+                    passwordInput.setEchoChar((char) 0);
+
+                    confirmPasswordInput.setText(" Confirm Password");
+                    confirmPasswordInput.setForeground(Color.decode("#999999"));
+                    confirmPasswordInput.setEchoChar((char) 0);
+                } else { // if array is full
+                    JOptionPane.showMessageDialog(frame,
+                            "Array is full",
+                            "Alert",
+                            JOptionPane.WARNING_MESSAGE);
+                }
+
+            }
+        });// registerButton action listener
+
+        rightPanel.add(registerButton);
         rightPanel.add(confirmPasswordInput);
         rightPanel.add(confirmPassword);
-
-        JButton register = new JButton("Register");
-        register.setFont(poppinsBold.deriveFont(24f));
-        register.setBackground(Color.decode("#3CB371"));
-        register.setForeground(Color.decode("#FDEBD0"));
-        register.setFocusPainted(false);
-        register.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        register.setBounds(657, 420, 200, 43);
-
-        rightPanel.add(register);
-
         frame.add(rightPanel);
 
         frame.setVisible(true);
