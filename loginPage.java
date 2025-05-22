@@ -6,6 +6,9 @@ import java.io.File;
 
 public class loginPage {
 
+    final String[][] userData = new String[100][100];
+    final int userIndex = 0;
+
     // Initialize fonts as class variables
     Font poppinsRegular;
     Font poppinsBold;
@@ -80,8 +83,6 @@ public class loginPage {
                 registrationPage.register();
             }
         });
-        
-    
 
         JPanel rightPanel = new JPanel();
         rightPanel.setBackground(Color.decode("#FDEBD0"));

@@ -246,7 +246,8 @@ public class registerPage extends JFrame {
                         "Passwords must match AND email must end with @gmail.com",
                         "Validation Error",
                         JOptionPane.ERROR_MESSAGE);
-            } else {
+            } else
+             {
                 // Saving user data
                 if (userIndex < userData.length) {
                     userData[userIndex][0] = email;

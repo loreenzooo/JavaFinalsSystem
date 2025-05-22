@@ -8,6 +8,7 @@ public class Dashboard {
         frame.setSize(1000, 600);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
 
         // Colors from image
         Color headerBg = new Color(0xEDD3A1);
